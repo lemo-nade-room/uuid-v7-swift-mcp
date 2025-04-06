@@ -27,7 +27,8 @@ enum UUIDv7を生成: Sendable {
             throw MCPError.invalidParams("countはnilまたは1以上である必要があります。")
         }
 
-        let result = [UUID](repeating: .v7(now: Date()), count: count)
+        let now = Date()
+        let result: [UUID] = (1...count).map { _ in .v7(now: now) }
         return .init(content: [.text("\(result)")])
     }
 }
